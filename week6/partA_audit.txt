@@ -1,0 +1,90 @@
+
+========================================================================
+district_grid.csv
+========================================================================
+rows 25, columns 13
+dtypes: code=str, district=str, zone=str, population=int64, households=int64, area_km2=float64, lon=float64, lat=float64, income_pc_usd=int64, electrification_pct=str, solar_kw_installed=int64, outages=int64, outage_minutes=int64
+unique codes 24 of 25 rows; duplicated keys: ['D11']
+   D11  district='Kotla'  outages=31283  solar_kw=719625  (GeoJSON name 'Kotla')
+   D11  district='Kotla City'  outages=31280  solar_kw=719637  (GeoJSON name 'Kotla')
+electrification_pct dtype str; values with '%': 2; blank: 3
+   parsed: 66.6 – 90.3, missing 3 (D06, D14, D23)
+outage_minutes: 2 rows equal -1 (D09, D20); no other value below 0
+ranges of denominators:
+   population      468,000.0 – 10,966,000.0
+   households          182.0 –  1,566,571.0
+   area_km2         16,745.7 –     95,677.6
+   outages           3,234.0 –     63,237.0
+   persons/household 5.70 – 5,939.56
+   other 23: 5.70 – 7.36; outside: D21 = [182] households
+join to regions.geojson: 24 matched, 0 register-only, 0 geometry-only
+   name mismatches after dedup: none
+   area_km2 vs spherical polygon area: max 0.000% off
+
+CLEAN register: 24 rows, population 57,857,000, households 8,908,512
+   persons/household 5.70 – 7.36
+   usable outage_minutes 22 of 24, mean interruption 77 – 214 min
+   interruptions, all districts 388,879
+
+========================================================================
+grid_daily.csv
+========================================================================
+rows 3061; dtypes: date=str, zone=str, cumulative_mwh=float64, peak_load_mw=float64, outage_minutes=int64
+zones ['P1', 'P2', 'P3', 'P4', 'P5', 'P6']; join to register zones: all match
+file order sorted by date? False (rows arrive shuffled)
+date formats: 2887 ISO yyyy-mm-dd, 174 nn/nn/yyyy; in those, field 1 runs 1–30, field 2 is always [11]
+duplicate zone-days: 15 keys (12 exact copies, 3 that disagree)
+   P3 2025-10-25: meter [12363361.7], peak [2429.7, 2337.4], minutes [159, 215]
+   P5 2026-02-25: meter [12010147.6], peak [1004.9, 1044.6], minutes [11, 8]
+   P5 2026-08-16: meter [15736740.2], peak [1491.1, 1550.0], minutes [63, 47]
+reporting span 2025-04-01 -> 2026-09-11 = 529 days x 6 zones = 3,174 slots; kept 3,046
+   P1: dtype_ok=True monotonic=True dup=0 missing=12 partial_tail=True (2026-09: 11 days)
+   P2: dtype_ok=True monotonic=True dup=0 missing=21 partial_tail=True (2026-09: 11 days)
+   P3: dtype_ok=True monotonic=True dup=0 missing=15 partial_tail=True (2026-09: 11 days)
+   P4: dtype_ok=True monotonic=True dup=0 missing=24 partial_tail=True (2026-09: 11 days)
+   P5: dtype_ok=True monotonic=True dup=0 missing=36 partial_tail=True (2026-09: 11 days)
+   P6: dtype_ok=True monotonic=True dup=0 missing=20 partial_tail=True (2026-09: 11 days)
+never reported: 128 zone-days; worst month 2025-12 (13), worst zone-month P5 2025-12 (9 days)
+peak_load_mw: 46 readings equal -1; other minimum 914.0 MW
+outage_minutes range 0 – 512 (no code found)
+zone-days where the meter reading falls: 1
+   P4: 2026-02-16 21,444,254.8 -> 2026-02-17 1,180.0 MWh (a new meter counting up from zero)
+P1 energy, June 2026: differenced 1,200,239 MWh vs summed reading 574,845,315 MWh (479x)
+   (end-of-day convention, reading 30 Jun - 31 May: 1,199,207 MWh, -0.09%)
+CLEAN daily: 3,046 reported zone-days -> clean/grid_daily.csv; 3,174-slot calendar -> clean/grid_daily_calendar.csv
+   unusable peak readings 49 (46 code + 3 conflicting)
+
+========================================================================
+generation_mix.csv
+========================================================================
+rows 162; dtypes: month=str, source=str, subsource=str, mwh=int64
+months 2025-04 -> 2026-09 (18), rows per month [9]
+duplicate (month, source, subsource): 0; mwh range 446,189 – 12,105,903
+categories: Fossil/Gas; Fossil/Coal; Fossil/Furnace oil; Hydro/Dam; Hydro/Run-of-river; Renewable/Solar; Renewable/Wind; Imported/Imported; All sources/Total
+rows that are parts: 144 = 18 months x 8 categories
+parts vs published total: max gap 2 MWh
+every row summed / published total: [200.0]%
+CLEAN generation: 144 rows
+   generation 2025-04 -> 2026-09: -5.0%
+   solar: +82.1% in MWh, 4.1% -> 7.9% of the mix
+
+========================================================================
+decisions
+========================================================================
+- [district_grid] Duplicate key: D11 appears as 'Kotla' and 'Kotla City'  ->  1 rows
+- [district_grid] `electrification_pct` stored as text, some with a trailing '%'  ->  2 rows
+- [district_grid] `electrification_pct` blank  ->  3 rows
+- [district_grid] `outage_minutes` = -1 (operator's not-available code)  ->  2 rows
+- [district_grid] D21 `households` = 182 for 1,081,000 people  ->  1 rows
+- [grid_daily] `date` is text in two formats (ISO, and dd/mm/yyyy for every November row)  ->  174 rows
+- [grid_daily] Rows arrive shuffled  ->  3,061 rows
+- [grid_daily] Exact duplicate rows (same zone-day, every field equal)  ->  12 rows
+- [grid_daily] Conflicting duplicates: same zone-day filed twice with different peak and minutes  ->  3 rows
+- [grid_daily] Zone-days never reported  ->  128 rows
+- [grid_daily] `peak_load_mw` = -1 (SCADA not-available code)  ->  46 rows
+- [grid_daily] `cumulative_mwh` is a meter reading (a counter), not energy  ->  243 rows
+- [grid_daily] Meter reading falls once: P4 on 2026-02-17 (21,444,255 → 1,180 MWh)  ->  1 rows
+- [grid_daily] Final month is partial (September 2026: 11 days)  ->  66 rows
+- [generation_mix] The ministry's 'All sources / Total' row sits beside its own parts  ->  18 rows
+
+wrote clean/ (district_grid.csv, generation_mix.csv, grid_daily.csv, grid_daily_calendar.csv), partA_audit.txt, partA_decisions.md

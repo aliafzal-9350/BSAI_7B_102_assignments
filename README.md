@@ -11,5 +11,6 @@
 | 3 | Python visualization foundations: Matplotlib and Seaborn | [week3/](week3/) |
 | 4 | Time series, proportions and hierarchies | [week4/](week4/) |
 | 5 | Multivariate data and geospatial visualization | [week5/](week5/) |
+| 6 | Integration checkpoint: audit, clean, and one figure for the board | [week6/](week6/) |
 
 Each week's folder has its own README, task list, data and notebooks.

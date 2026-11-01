@@ -1,0 +1,4 @@
+# Versions this week was run with (Python 3.14.7). Nothing else is imported.
+pandas==3.0.6
+numpy==2.5.1
+matplotlib==3.11.2
