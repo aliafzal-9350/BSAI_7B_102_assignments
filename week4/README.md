@@ -1,7 +1,8 @@
 # Week 4 · Time-Series, Proportions & Hierarchies
 
 **Name:** Ali Afzal
-**Roll No.:** BSAI-7B-102
+**Roll No.:** SU92-BSAIM-F23-102
+**Section:** BSAI · Section 7B
 **Subject:** Data Visualization
 
 My solutions to the five parts in [TASKS.md](TASKS.md). This week's broken charts aren't broken by a drawing

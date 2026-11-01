@@ -1,7 +1,8 @@
 # Week 1 · Why visualize, and choosing the right chart
 
 **Name:** Ali Afzal
-**Roll No.:** BSAI-7B-102
+**Roll No.:** SU92-BSAIM-F23-102
+**Section:** BSAI · Section 7B
 **Subject:** Data Visualization
 
 There are five datasets and five tasks, all from [TASKS.md](TASKS.md). The question decides the chart type,

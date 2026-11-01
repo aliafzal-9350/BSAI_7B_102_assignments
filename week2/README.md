@@ -1,7 +1,8 @@
 # Week 2 · Visual Perception
 
 **Name:** Ali Afzal
-**Roll No.:** BSAI-7B-102
+**Roll No.:** SU92-BSAIM-F23-102
+**Section:** BSAI · Section 7B
 **Subject:** Data Visualization
 
 My solutions to the five tasks in [TASKS.md](TASKS.md). They cover how the brain reads a chart and what that

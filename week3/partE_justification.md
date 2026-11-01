@@ -1,6 +1,6 @@
 # Part E · Written justification
 
-**Ali Afzal** · BSAI-7B-102 · Data Visualization · Week 3 · Figure: [`charts/partD_figure.png`](charts/partD_figure.png)
+**Ali Afzal** · SU92-BSAIM-F23-102 · BSAI · Section 7B · Data Visualization · Week 3 · Figure: [`charts/partD_figure.png`](charts/partD_figure.png)
 
 ## 1 · The four panels
 

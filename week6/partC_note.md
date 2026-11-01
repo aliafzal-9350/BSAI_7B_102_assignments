@@ -1,6 +1,6 @@
 # Task C · Note on the board figure
 
-**Ali Afzal** · BSAI-7B-102 · Figure: [`partC_figure.png`](partC_figure.png), from `partC_figure.py`
+**Ali Afzal** · SU92-BSAIM-F23-102 · BSAI · Section 7B · Figure: [`partC_figure.png`](partC_figure.png), from `partC_figure.py`
 
 **Reader.** The National Grid Authority board, splitting the reliability budget across 24 districts.
 

@@ -1,6 +1,6 @@
 # Part E · Written justification
 
-**Ali Afzal** · BSAI-7B-102 · Data Visualization · Week 5 · Figures: [`partD_bubble.png`](charts/partD_bubble.png),
+**Ali Afzal** · SU92-BSAIM-F23-102 · BSAI · Section 7B · Data Visualization · Week 5 · Figures: [`partD_bubble.png`](charts/partD_bubble.png),
 [`partD_pcp.png`](charts/partD_pcp.png), [`partD_choropleth.png`](charts/partD_choropleth.png)
 
 ## 1 · Which variable got which channel, and why

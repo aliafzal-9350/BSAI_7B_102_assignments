@@ -1,7 +1,8 @@
 # Week 6 · The Integration Checkpoint
 
 **Name:** Ali Afzal
-**Roll No.:** BSAI-7B-102
+**Roll No.:** SU92-BSAIM-F23-102
+**Section:** BSAI · Section 7B
 **Subject:** Data Visualization
 
 My solution to the class task in [TASKS.md](TASKS.md). One unchecked dataset from the National Grid
@@ -14,11 +15,12 @@ scripts, not notebooks, laid out the way the brief's hand-in list asks.
 
 ```bash
 cd week6
-pip install -r requirements.txt     # pandas, numpy, matplotlib (versions inside)
+pip install -r requirements.txt     # pandas, numpy, matplotlib, plotly (versions inside)
 python selfcheck.py                 # optional: toolkits and data load (writes _selfcheck.png)
 python partA_process.py             # data/ -> audit -> clean/, partA_audit.txt, partA_decisions.md
 python partB_charts.py              # clean/ -> partB_1.png, partB_2.png, partB_3.png
 python partC_figure.py              # clean/ -> partC_figure.png
+python partD_interactive.py         # bonus D1: clean/ -> partD_interactive.html
 ```
 
 Every path is relative to the script, so it runs from any checkout. `data/` holds the raw files exactly as
@@ -35,6 +37,8 @@ All figures are 300 dpi with a source note.
 | [partB_charts.py](partB_charts.py) | B | [Trend](partB_1.png) (daily energy from the meter), [composition](partB_2.png) (generation mix), [relationship](partB_3.png) (solar vs income) |
 | [partC_figure.py](partC_figure.py) | C | [The board figure](partC_figure.png): rate choropleth beside the 24 rates, sorted |
 | [partC_note.md](partC_note.md) | C | Reader, message, parameters with reasons, and the counterfactual |
+| [partD_interactive.py](partD_interactive.py) | D1 bonus | [Task B's trend chart in Plotly](partD_interactive.html): hover any day, filter zones, zoom dates. Self-contained HTML, works offline |
+| [partD_note.md](partD_note.md) | D1 bonus | What the interaction lets a reader do, and what it lets them do that I'd rather they didn't |
 
 `vizlib.py`, `tslib.py` and `geolib.py` are the Weeks 3–5 toolkits, unchanged.
 
@@ -64,4 +68,5 @@ All figures are 300 dpi with a source note.
   (1 Jul − 1 Jun). Read literally, the dictionary's "end of day" gives 1,199,207 MWh (−0.09%). I use the
   convention that matches the brief, and the audit prints both.
 
-*Task D (bonus) isn't attempted.*
+*Task D: option **D1** (make it interactive) is done. D2 (real data) wasn't attempted, because the brief
+asks for one of the two.*

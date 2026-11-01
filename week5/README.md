@@ -1,7 +1,8 @@
 # Week 5 · Multivariate Data & Geospatial Visualization
 
 **Name:** Ali Afzal
-**Roll No.:** BSAI-7B-102
+**Roll No.:** SU92-BSAIM-F23-102
+**Section:** BSAI · Section 7B
 **Subject:** Data Visualization
 
 My solutions to the five parts in [TASKS.md](TASKS.md). This week's broken charts are correctly computed and
