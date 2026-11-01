@@ -70,5 +70,24 @@ The data is already in `data/`. Each notebook runs top to bottom with **Restart 
   category.
 - All data is synthetic course data for CDB601220, and every figure says so.
 
-*The bonus (the pop-out experiment on five classmates) isn't attempted. It needs real people timed at the
-screen.*
+## Bonus · The pop-out experiment
+
+[`popout_experiment.py`](popout_experiment.py) finishes the starter's two TODO panels (size only; colour
+and shape together) and times real readers on them. The comparison figure is
+[`charts/popout_panels.png`](charts/popout_panels.png). Run from `week3/` in a normal terminal, not a
+notebook, because each panel opens in its own window:
+
+```bash
+python popout_experiment.py panels           # the four-panel figure
+python popout_experiment.py run "Name"        # once per reader, five readers
+python popout_experiment.py report            # chart + three sentences
+```
+
+For each reader: one unrecorded practice panel, then the four panels in a fresh random order. The clock
+starts when a panel is drawn and stops when they press SPACE; you type the number they said. Each timed
+trial uses a new grid with 7–11 targets, so nobody can reuse the answer from the panel before.
+`report` writes `charts/popout_results.png` (mean bars, every reader as a dot, zero baseline, n and
+randomisation in the source note) and `popout_findings.md` (the three sentences, from the data).
+
+**Status:** the code is done and tested. The readers haven't been run yet, so there's no
+`popout_results.csv` in the repo, and no results are invented.
